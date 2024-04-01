@@ -1,0 +1,25 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+body{
+  transform: scale(2);
+  overflow: hidden;
+}
+
+.App {
+  background-color: rgb(68, 64, 58);
+  height: 100vh;
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.complete{
+  background-color: rgb(129, 117, 98);
+  transition: all 0.3s ease-in-out;
+  border-radius: 5px;
+  margin-top: 3px;
+}
