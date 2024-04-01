@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { nanoid } from 'nanoid'
 
 import { ITask } from '../../types/types'
@@ -14,20 +14,25 @@ const initialData: ITask[] = [
 ]
 
 export const Todo = () => {
-  const [data, setData] = useState(initialData)
+  const storageData = localStorage.getItem('todoList')
+  const [data, setData] = useState<ITask[]>  (storageData ? JSON.parse(storageData) : initialData)  
   const [doneStatus, setDoneStatus] = useState(false)
   const [filter, setFilter] = useState('')
 
+  useEffect(() => {
+    localStorage.setItem('todoList',JSON.stringify(data))
+  },[data])
+
   const toggleMessageStatus = (id: string) => {
     setData(data => {
-      return data.map(item => {
-        if (item.id !== id) {
-          return item
+      return data.map(item  => {
+        if (item.id !== id){
+          return item;
         }
         return { ...item, status: !item.status };
-      })
-    })
-  }
+      });
+    });
+  };
 
   const filteredTasks = useMemo(() => {
     return data.filter(task => {
@@ -41,12 +46,12 @@ export const Todo = () => {
   }, [data, filter, doneStatus])
 
   const addNewTask = (message: string) =>{
-    setData((data) =>[
+    setData((data: ITask[]) =>[
       ...data,
       {id: nanoid(), message, status:false}
     ])
+    
   }
-
 
   return (
     <div>
