@@ -3,8 +3,8 @@
   margin: 0px;
 }
 body{
-  /* transform: scale(2); */
-  /* overflow: hidden; */
+  transform: scale(2);
+  overflow: hidden;
 }
 
 .App {
