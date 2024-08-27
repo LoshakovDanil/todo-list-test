@@ -9,6 +9,8 @@ type Props = {
 
 export const ListItem = ({task, toggleMessageStatus}: Props) =>{
   const {id, message, status} = task
+
+  
   return (
     <div
       className={cn('list-item',{
